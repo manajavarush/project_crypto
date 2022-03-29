@@ -1,7 +1,8 @@
 package com.javarush.cryptoanalyser;
 
 import java.util.*;
-import static com.javarush.cryptoanalyser.OtherFunctional.*;
+
+import static com.javarush.cryptoanalyser.Functional.*;
 
 public class BruteForce {
 
@@ -29,11 +30,11 @@ public class BruteForce {
         String secondOption = null;
         String completeFailure = "Sorry, but we can't decoding this text";
 
-        String textFromFile = readString("words.txt");
+        String textFromFile = readString("dist/words.txt");
         String[] arrayOfWords = textFromFile.split(",");
         Set<String> words = new HashSet<>(List.of(arrayOfWords));
 
-        while (key < S_LENGTH - 1) {
+        while (key < SYMBOLS_LENGTH - 1) {
             String decodingText = Decoding.decode(cryptoText, key);
             String[] decodingArray = decodingText.split(" ");
             int numberOfSpaces = decodingArray.length;

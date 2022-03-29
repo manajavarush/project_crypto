@@ -1,12 +1,12 @@
 package com.javarush.cryptoanalyser;
 
 import java.util.*;
-import static com.javarush.cryptoanalyser.OtherFunctional.*;
+
+import static com.javarush.cryptoanalyser.Functional.*;
 
 public class StatisticalAnalysis {
 
-    private StatisticalAnalysis() {
-    }
+    private StatisticalAnalysis() {}
 
     public static void statAnMethod() {
         Scanner scanner = new Scanner(System.in);
@@ -56,8 +56,9 @@ public class StatisticalAnalysis {
         for (char c : list) {
             int count = Collections.frequency(list, c);
             int index = count * 100 / list.size();
+            double minimumFrequency = 0.9;
 
-            if (index > 0.9) {
+            if (index > minimumFrequency) {
                 map.put(c, index);
             }
         }

@@ -1,7 +1,8 @@
 package com.javarush.cryptoanalyser;
 
 import java.util.Scanner;
-import static com.javarush.cryptoanalyser.OtherFunctional.*;
+
+import static com.javarush.cryptoanalyser.Functional.*;
 
 public class Decoding {
 
@@ -11,8 +12,8 @@ public class Decoding {
         Scanner scanner = new Scanner(System.in);
         System.out.println(FILE_LOCATION);
         String path = scanner.nextLine();
-        System.out.println("Please enter the key");
-        int key = scanner.nextInt();
+
+        int key = validKey();
 
         String content = readString(path);
 
@@ -24,7 +25,6 @@ public class Decoding {
     }
 
     public static String decode(String text, int key) {
-        key = Math.abs(key) % S_LENGTH;
         String characters = String.valueOf(SYMBOLS);
         char[] original = text.toCharArray();
         StringBuilder crypto = new StringBuilder();
@@ -40,8 +40,8 @@ public class Decoding {
             if (index > -1) {
                 crypto.append(
                         (index - key) > -1
-                                ? (SYMBOLS[(index - key) % S_LENGTH])
-                                : (SYMBOLS[S_LENGTH + index - key]));
+                                ? (SYMBOLS[(index - key) % SYMBOLS_LENGTH])
+                                : (SYMBOLS[SYMBOLS_LENGTH + index - key]));
             }
         }
         return crypto.toString();

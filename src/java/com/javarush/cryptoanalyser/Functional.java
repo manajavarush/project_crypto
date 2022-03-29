@@ -3,14 +3,15 @@ package com.javarush.cryptoanalyser;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Scanner;
 
-public class OtherFunctional {
+public class Functional {
 
-    private OtherFunctional() {}
+    private Functional() {}
 
     public static final char[] SYMBOLS =
             ("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz-.,\"\\:!?() ").toCharArray();
-    public static final int S_LENGTH = SYMBOLS.length;
+    public static final int SYMBOLS_LENGTH = SYMBOLS.length;
     public static final String FILE_LOCATION = "Please enter the file path";
     public static final String PROGRAM_COMPLETED = "This program has been successfully completed";
 
@@ -34,5 +35,20 @@ public class OtherFunctional {
             e.printStackTrace();
         }
         return actual;
+    }
+
+    public static int validKey() {
+        int key;
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Please enter the number between 0 and 63");
+
+        key = scanner.nextInt();
+
+        while (key < 0 || key > SYMBOLS_LENGTH) {
+            System.out.println("You have entered an invalid key. Enter a number between 0 and 63");
+            key = scanner.nextInt();
+        }
+
+        return key;
     }
 }
